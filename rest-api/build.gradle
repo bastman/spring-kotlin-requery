@@ -11,7 +11,8 @@ buildscript {
         swaggerVersion = '2.8.0'
 
         postgresDriverVersion = '42.2.1'
-        exposedVersion = '0.10.1'
+        //exposedVersion = '0.10.1'
+        requeryVersion = '1.5.0'
 
         junitGradlePluginVersion = '1.1.0'
         mockitoVersion = '2.15.0'
@@ -40,7 +41,20 @@ apply plugin: "kotlin-noarg"
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'idea'
+
+idea {
+    module {
+        def kaptMain = file('build/generated/source/kapt/main')
+        sourceDirs += kaptMain
+        generatedSourceDirs += kaptMain
+    }
+}
+
+kapt {
+    generateStubs = true
+}
 
 compileKotlin {
     kotlinOptions {
@@ -58,6 +72,7 @@ compileTestKotlin {
         freeCompilerArgs = ["-Xjsr305=strict"]
     }
 }
+
 
 repositories {
     mavenCentral()
@@ -93,8 +108,13 @@ dependencies {
     compile "org.postgresql:postgresql:${postgresDriverVersion}"
 
     // exposed
-    compile "org.jetbrains.exposed:exposed:$exposedVersion"
-    compile "org.jetbrains.exposed:spring-transaction:$exposedVersion"
+    //compile "org.jetbrains.exposed:exposed:$exposedVersion"
+    //compile "org.jetbrains.exposed:spring-transaction:$exposedVersion"
+
+    // requery
+    compile "io.requery:requery:$requeryVersion"
+    compile "io.requery:requery-kotlin:$requeryVersion"
+    kapt "io.requery:requery-processor:$requeryVersion"
 
     // test
     testCompile('org.springframework.boot:spring-boot-starter-test') {

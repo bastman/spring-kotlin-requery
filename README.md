@@ -2,11 +2,10 @@
 playground for spring-boot 2.*, kotlin , requery (orm), postgres
 
 
-- Yes, we can talk to a sql db.
+Status: no idea how to properly integrate requery intom spring-boot.
+see: https://github.com/requery/requery/issues/758
 
-- It's easy. No ORM magic required. No hibernate / jpa.
 
-- Ready for starship java "enterprise" deployments.
 
 ```
 
@@ -29,8 +28,9 @@ playground for spring-boot 2.*, kotlin , requery (orm), postgres
 
 
 ## This example project is based on ...
+- https://github.com/requery/requery/wiki
+- requery-kapt: https://github.com/requery/requery/wiki/Gradle-&-Annotation-processing
 - https://github.com/making/spring-boot-db-samples
-- https://github.com/sdeleuze/geospatial-messenger
 
 ## Whats wrong with orm, jpa, hibernate and in-memory h2-db these days ?
 
