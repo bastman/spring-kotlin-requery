@@ -1,0 +1,20 @@
+version: '3'
+services:
+  spring-kotlin-requery-db-local:
+    image: local/spring-kotlin-requery-db:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - spring-kotlin-requery-db-local-volume:/var/lib/postgresql/data
+  spring-kotlin-requery-db-ci:
+    image: local/spring-kotlin-requery-db:latest
+    ports:
+      - "5435:5432"
+    restart: always
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+      - /var/lib/postgresql/data
+      
+volumes:
+  spring-kotlin-requery-db-local-volume: {}
